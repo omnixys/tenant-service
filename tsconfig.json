@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Omnixys Tenant Service",
+  "extends": ["@tsconfig/node23"],
+
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "lib": ["ES2024"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "incremental": true,
+    "skipLibCheck": true,
+    "removeComments": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "preserveWatchOutput": true,
+    "noErrorTruncation": true
+  },
+
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "coverage", "__tests__/"],
+  "types": ["node", "fastify", "@types/node"],
+  "typeRoots": ["./src/types", "./node_modules/@types"]
+}

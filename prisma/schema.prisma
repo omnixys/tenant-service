@@ -1,0 +1,74 @@
+/// ------------------------------------------------------------
+/// TENANT SERVICE SCHEMA
+/// The tenant service is the AUTHORITATIVE source for tenant
+/// existence, activity, membership and tenant roles.
+/// Keycloak only mirrors the `tenants` list per user.
+/// ------------------------------------------------------------
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/prisma/generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum TenantStatus {
+  ACTIVE
+  SUSPENDED
+  DISABLED
+  ARCHIVED
+}
+
+enum MembershipRole {
+  OWNER
+  ADMIN
+  MEMBER
+  GUEST
+}
+
+enum MembershipStatus {
+  ACTIVE
+  INVITED
+  SUSPENDED
+  REVOKED
+}
+
+model Tenant {
+  id          String            @id @default(uuid()) @map("id") @db.Uuid
+  name        String            @map("name")
+  slug        String            @unique @map("slug")
+  status      TenantStatus      @default(ACTIVE) @map("status")
+
+  memberships TenantMembership[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([status])
+  @@map("tenant")
+}
+
+model TenantMembership {
+  id        String           @id @default(uuid()) @map("id") @db.Uuid
+  tenantId  String           @map("tenant_id") @db.Uuid
+  userId    String           @map("user_id") @db.Uuid
+  role      MembershipRole   @map("role")
+  status    MembershipStatus @default(ACTIVE) @map("status")
+
+  createdBy String @map("created_by")
+  updatedBy String @map("updated_by")
+  deletedAt DateTime? @map("deleted_at")
+  deletedBy String? @map("deleted_by")
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([tenantId, userId])
+  @@index([userId])
+  @@index([tenantId, status])
+  @@map("tenant_membership")
+}

@@ -1,0 +1,17 @@
+# compiled output
+/dist
+/node_modules
+/build
+**/reports/**
+
+# TypeScript build cache
+*.tsbuildinfo
+
+volumes
+keys
+
+# Logs
+logs
+
+# Environment (never commit real secrets)
+.env
