@@ -4,16 +4,20 @@ import 'dotenv/config';
 import { isUUID } from 'class-validator';
 
 const DEFAULT_TENANT_ID = process.env.DEFAULT_TENANT_ID;
+const CHECKPOINT_TENANT_ID =
+  process.env.CHECKPOINT_TENANT_ID ??
+  'a738a3b6-c3c1-483f-926c-c25e18fd4ff2';
 
-function validateBootstrapTenant(): string {
-  if (!DEFAULT_TENANT_ID || !isUUID(DEFAULT_TENANT_ID, '4')) {
-    throw new Error('[SEED] DEFAULT_TENANT_ID must be a valid UUID v4');
+function validateTenantId(id: string | undefined, label: string): string {
+  if (!id || !isUUID(id, '4')) {
+    throw new Error(`[SEED] ${label} must be a valid UUID v4`);
   }
-  return DEFAULT_TENANT_ID;
+  return id;
 }
 
 async function main(): Promise<void> {
-  const bootstrapTenantId = validateBootstrapTenant();
+  const bootstrapTenantId = validateTenantId(DEFAULT_TENANT_ID, 'DEFAULT_TENANT_ID');
+  const checkpointTenantId = validateTenantId(CHECKPOINT_TENANT_ID, 'CHECKPOINT_TENANT_ID');
   const databaseUrl = process.env.DATABASE_URL;
   if (!databaseUrl) {
     throw new Error('[SEED] DATABASE_URL is required');
@@ -39,7 +43,26 @@ async function main(): Promise<void> {
       },
     });
 
-    console.log('SEED_TENANT_JSON:' + JSON.stringify(tenant));
+    // Checkpoint tenant backing the QR gate / security demo workspace.
+    const checkpointTenant = await prisma.tenant.upsert({
+      where: { id: checkpointTenantId },
+      update: {
+        name: 'Checkpoint',
+        slug: 'checkpoint',
+        status: 'ACTIVE',
+      },
+      create: {
+        id: checkpointTenantId,
+        name: 'Checkpoint',
+        slug: 'checkpoint',
+        status: 'ACTIVE',
+      },
+    });
+
+    console.log(
+      'SEED_TENANT_JSON:' +
+        JSON.stringify({ tenant, checkpointTenant }),
+    );
   } finally {
     await prisma.$disconnect();
   }
