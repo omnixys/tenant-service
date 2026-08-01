@@ -67,11 +67,13 @@ export const env = {
     process.env.TENANT_GRPC_AUTHENTICATION_TOKEN ?? 'dev-authentication-service-token',
   TENANT_GRPC_GATEWAY_TOKEN:
     process.env.TENANT_GRPC_GATEWAY_TOKEN ?? 'dev-gateway-service-token',
+  TENANT_GRPC_SERVICE_TOKEN:
+    process.env.TENANT_GRPC_SERVICE_TOKEN ?? 'dev-tenant-service-token',
 
   /** Authorized callers per operation group. */
   TENANT_GRPC_READ_CALLERS: splitCallers(process.env.TENANT_GRPC_READ_CALLERS).length
     ? splitCallers(process.env.TENANT_GRPC_READ_CALLERS)
-    : ['authentication', 'gateway'],
+    : ['authentication', 'gateway', 'service'],
   TENANT_GRPC_WRITE_CALLERS: splitCallers(process.env.TENANT_GRPC_WRITE_CALLERS).length
     ? splitCallers(process.env.TENANT_GRPC_WRITE_CALLERS)
     : ['authentication'],

@@ -3,6 +3,7 @@ import { HealthModule } from './health/health.module.js';
 import { TenantModule } from './tenant/tenant.module.js';
 import { Module } from '@nestjs/common';
 import { LoggerModule } from '@omnixys/logger-ts';
+import { BannerService } from './config/banner.service.js';
 
 @Module({
   imports: [
@@ -19,5 +20,6 @@ import { LoggerModule } from '@omnixys/logger-ts';
     HealthModule,
     TenantModule,
   ],
+    providers: [BannerService],
 })
 export class AppModule {}

@@ -26,7 +26,7 @@ interface GrpcCallContext {
  * the invoked operation against the configured caller allowlists.
  *
  * - Authentication: the presented token is matched (timing-safe) against the
- *   known per-caller tokens (authentication, gateway).
+ *   known per-caller tokens (authentication, gateway, service).
  * - Authorization: write operations (CreateMembership, UpdateMembershipStatus,
  *   RevokeMembership) require a caller in TENANT_GRPC_WRITE_CALLERS; all other
  *   operations require a caller in TENANT_GRPC_READ_CALLERS.
@@ -39,6 +39,7 @@ export class GrpcCallerGuard implements CanActivate {
     this.callers = new Map([
       ['authentication', env.TENANT_GRPC_AUTHENTICATION_TOKEN],
       ['gateway', env.TENANT_GRPC_GATEWAY_TOKEN],
+      ['service', env.TENANT_GRPC_SERVICE_TOKEN],
     ]);
   }
 

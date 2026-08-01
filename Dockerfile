@@ -1,7 +1,19 @@
 # @license GPL-3.0-or-later
-# Copyright (C) 2026 Omnixys Technologies
+# Copyright (C) 2025 Caleb Gyamfi - Omnixys Technologies
 #
-# Dockerfile – Omnixys Tenant Service
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# For more information, visit <https://www.gnu.org/licenses/>.
+# ---------------------------------------------------------------------------------------
+# Dockerfile – Omnixys Authentication Service
 # Multi-stage build optimized for security, reproducibility, and minimal runtime size.
 # ---------------------------------------------------------------------------------------
 # syntax=docker/dockerfile:1.14.0
@@ -59,7 +71,7 @@ FROM node:${NODE_VERSION}-bookworm-slim AS final
 
 # ----- Build-time arguments -----
 ARG NODE_VERSION
-ARG APP_NAME=tenant
+ARG APP_NAME
 ARG APP_VERSION
 ARG CREATED
 ARG REVISION
@@ -107,7 +119,6 @@ COPY --chown=node:node package.json ./
 
 # ----- Expose application port (per Omnixys port conventions) -----
 EXPOSE 3000
-EXPOSE 50052
 
 # ----- Healthcheck -----
 # Ensures that Docker and orchestration systems (e.g., Kubernetes) can detect unhealthy containers.
