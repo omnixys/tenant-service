@@ -2,6 +2,7 @@ import {
   MembershipWriteService,
 } from '../domain/membership-write.service.js';
 import { TenantReadService } from '../domain/tenant-read.service.js';
+import { TenantWriteService } from '../domain/tenant-write.service.js';
 import { GrpcCallerGuard } from './grpc-caller.guard.js';
 import {
   TenantDomainError,
@@ -15,6 +16,7 @@ import type {
   MembershipStatus,
   Tenant,
   TenantMembership,
+  TenantStatus,
 } from '../../prisma/generated/client.js';
 
 const MEMBERSHIP_ROLES = new Set(['OWNER', 'ADMIN', 'MEMBER', 'GUEST']);
@@ -77,6 +79,7 @@ export class TenantController {
   constructor(
     private readonly tenantRead: TenantReadService,
     private readonly membershipWrite: MembershipWriteService,
+    private readonly tenantWrite: TenantWriteService,
   ) {}
 
   @GrpcMethod('TenantService', 'GetTenant')
@@ -184,6 +187,69 @@ export class TenantController {
         data.updatedBy,
       );
       return { membership: toMembershipProto(membership) };
+    } catch (error) {
+      this.throwRpc(error);
+    }
+  }
+
+  @GrpcMethod('TenantService', 'CreateTenant')
+  async createTenant(data: { name: string; slug: string; created_by: string }) {
+    try {
+      const tenant = await this.tenantWrite.createTenant({
+        name: data.name,
+        slug: data.slug,
+        createdBy: data.created_by,
+      });
+      return { tenant: toTenantProto(tenant) };
+    } catch (error) {
+      this.throwRpc(error);
+    }
+  }
+
+  @GrpcMethod('TenantService', 'UpdateTenant')
+  async updateTenant(
+    data: {
+      id: string;
+      name?: string;
+      slug?: string;
+      status?: string;
+      updated_by: string;
+    },
+  ) {
+    try {
+      const tenant = await this.tenantWrite.updateTenant({
+        id: data.id,
+        name: data.name,
+        slug: data.slug,
+        status: data.status as TenantStatus | undefined,
+        updatedBy: data.updated_by,
+      });
+      return { tenant: toTenantProto(tenant) };
+    } catch (error) {
+      this.throwRpc(error);
+    }
+  }
+
+  @GrpcMethod('TenantService', 'DeleteTenant')
+  async deleteTenant(data: { id: string; updated_by: string }) {
+    try {
+      const deleted = await this.tenantWrite.deleteTenant({
+        id: data.id,
+        updatedBy: data.updated_by,
+      });
+      return { deleted };
+    } catch (error) {
+      this.throwRpc(error);
+    }
+  }
+
+  @GrpcMethod('TenantService', 'ListTenants')
+  async listTenants(data: { status?: string }) {
+    try {
+      const tenants = await this.tenantWrite.listTenants({
+        status: data.status as TenantStatus | undefined,
+      });
+      return { tenants: tenants.map(toTenantProto) };
     } catch (error) {
       this.throwRpc(error);
     }

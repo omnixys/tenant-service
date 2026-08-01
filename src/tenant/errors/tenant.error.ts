@@ -89,6 +89,26 @@ export class TenantAlreadyExistsError extends TenantDomainError {
   }
 }
 
+export class TenantNameEmptyError extends TenantDomainError {
+  constructor() {
+    super('TENANT_NAME_EMPTY', 'Tenant name must not be empty', {});
+  }
+}
+
+export class TenantSlugEmptyError extends TenantDomainError {
+  constructor() {
+    super('TENANT_SLUG_EMPTY', 'Tenant slug must not be empty', {});
+  }
+}
+
+export class TenantSlugExistsError extends TenantDomainError {
+  constructor(slug: string) {
+    super('TENANT_SLUG_EXISTS', `Tenant slug already exists: ${slug}`, {
+      metadata: { slug },
+    });
+  }
+}
+
 /**
  * Maps a canonical tenant error to a gRPC exception. The mapping is stable
  * and shared with the gateway/HTTP layer via the canonical event code.
@@ -98,12 +118,15 @@ export function toGrpcException(error: TenantDomainError): RpcException {
   switch (error.code) {
     case 'INVALID_TENANT_ID':
     case 'INVALID_USER_ID':
+    case 'TENANT_NAME_EMPTY':
+    case 'TENANT_SLUG_EMPTY':
       code = grpc.status.INVALID_ARGUMENT;
       break;
     case 'TENANT_NOT_FOUND':
       code = grpc.status.NOT_FOUND;
       break;
     case 'TENANT_ALREADY_EXISTS':
+    case 'TENANT_SLUG_EXISTS':
       code = grpc.status.ALREADY_EXISTS;
       break;
     case 'TENANT_DISABLED':
