@@ -44,7 +44,7 @@ export class GrpcCallerGuard implements CanActivate {
   }
 
   canActivate(context: ExecutionContext): boolean {
-    const call = context.switchToRpc().getContext() as GrpcCallContext | undefined;
+    const call = context.switchToRpc().getContext<GrpcCallContext>();
     const authorization = this.extractAuthorization(call);
     if (!authorization) {
       throw new RpcException({

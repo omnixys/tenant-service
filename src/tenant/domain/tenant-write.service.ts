@@ -129,7 +129,7 @@ export class TenantWriteService {
 
     await this.prisma.tenant.update({
       where: { id: input.id },
-      data: { status: 'ARCHIVED' as TenantStatus },
+      data: { status: 'ARCHIVED' },
     })
 
     return true

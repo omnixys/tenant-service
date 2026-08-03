@@ -21,7 +21,7 @@
 # ---------------------------------------------------------------------------------------
 
 variable "APP_NAME" {
-  default = "analytics"
+  default = "tenant"
 }
 
 # Automatically use today's date (YYYY-MM-DD) as version tag
@@ -41,13 +41,6 @@ variable "REVISION" {
   default = "local-dev"
 }
 
-variable "DATABASE_URL" {
-  default = "kp"
-}
-
-variable "SHADOW_DATABASE_URL" {
-  default = "local-dev"
-}
 
 # ---------------------------------------------------------------------------------------
 # Target Group
@@ -71,8 +64,6 @@ target "build" {
     APP_VERSION  = "${APP_VERSION}"
     CREATED      = "${CREATED}"
     REVISION     = "${REVISION}"
-    DATABASE_URL         = "${DATABASE_URL}"
-    SHADOW_DATABASE_URL  = "${SHADOW_DATABASE_URL}"
   }
 
   labels = {

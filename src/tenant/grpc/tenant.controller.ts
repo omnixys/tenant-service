@@ -11,6 +11,7 @@ import {
 import { Controller, UseGuards } from '@nestjs/common';
 import { GrpcMethod, RpcException } from '@nestjs/microservices';
 import * as grpc from '@grpc/grpc-js';
+import { env } from '../../config/env.js';
 import type {
   MembershipRole,
   MembershipStatus,
@@ -95,10 +96,30 @@ export class TenantController {
   @GrpcMethod('TenantService', 'ValidateMembership')
   async validateMembership(data: { tenantId: string; userId: string }) {
     try {
-      const result = await this.tenantRead.validateMembership(
+      let result = await this.tenantRead.validateMembership(
         data.tenantId,
         data.userId,
       );
+
+      if (
+        env.AUTO_PROVISION_MEMBERSHIPS &&
+        result.tenantExists &&
+        result.tenantActive &&
+        !result.membershipExists
+      ) {
+        await this.membershipWrite.createMembership({
+          tenantId: data.tenantId,
+          userId: data.userId,
+          role: 'MEMBER',
+          status: 'ACTIVE',
+          createdBy: 'system',
+        });
+        result = await this.tenantRead.validateMembership(
+          data.tenantId,
+          data.userId,
+        );
+      }
+
       return {
         tenantExists: result.tenantExists,
         tenantActive: result.tenantActive,
