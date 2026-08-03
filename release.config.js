@@ -177,7 +177,7 @@ export default {
 ---
 
 🏢 **Organization:** Omnixys
-📦 **Service:** Analytics Service
+📦 **Service:** Tenant Service
 🔗 **Repository:** Repository: <%= options.repositoryUrl %>
 🧭 **Docs:** https://omnixys.com/docs
 `,

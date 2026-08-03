@@ -61,7 +61,7 @@ export const env = {
 
   NODE_ENV: getEnv('NODE_ENV', 'development'),
   PORT: getEnv('PORT', '4000', { transform: toNumber }),
-  SERVICE: getEnv('SERVICE', 'user'),
+  SERVICE: getEnv('SERVICE', 'tenant'),
 
   SCHEMA_TARGET: getEnv('SCHEMA_TARGET', 'true'),
   HTTPS: getEnv('HTTPS', 'false', { transform: toBool }),
