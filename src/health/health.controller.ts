@@ -21,9 +21,7 @@ export class HealthController {
   @Get('liveness')
   @HealthCheck()
   liveness(): Promise<HealthCheckResult> {
-    return this.#health.check([
-      () => Promise.resolve({ app: { status: 'up' } }),
-    ]);
+    return this.#health.check([() => Promise.resolve({ app: { status: 'up' } })]);
   }
 
   @Get('readiness')

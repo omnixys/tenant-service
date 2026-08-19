@@ -1,3 +1,4 @@
+import type { Tenant, TenantMembership } from '../../prisma/generated/client.js';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import {
   InvalidTenantIdError,
@@ -6,10 +7,6 @@ import {
 } from '../errors/tenant.error.js';
 import { Injectable } from '@nestjs/common';
 import { isUUID } from 'class-validator';
-import type {
-  Tenant,
-  TenantMembership,
-} from '../../prisma/generated/client.js';
 
 export interface ValidateMembershipResult {
   tenantExists: boolean;
@@ -51,10 +48,7 @@ export class TenantReadService {
    * Returns a non-throwing validation result. Used by callers to decide
    * between allow/deny/selection. Only structurally invalid inputs throw.
    */
-  async validateMembership(
-    tenantId: string,
-    userId: string,
-  ): Promise<ValidateMembershipResult> {
+  async validateMembership(tenantId: string, userId: string): Promise<ValidateMembershipResult> {
     this.assertTenantId(tenantId);
     this.assertUserId(userId);
 
@@ -80,8 +74,7 @@ export class TenantReadService {
       tenantExists: true,
       tenantActive: tenant.status === 'ACTIVE',
       membershipExists: Boolean(membership),
-      membershipActive:
-        Boolean(membership) && membership?.status === 'ACTIVE',
+      membershipActive: Boolean(membership) && membership?.status === 'ACTIVE',
       role: membership?.role ?? null,
       reason: !membership
         ? 'TENANT_MEMBERSHIP_NOT_FOUND'

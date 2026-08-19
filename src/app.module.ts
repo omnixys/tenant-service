@@ -1,21 +1,15 @@
-import { PrismaModule } from './prisma/prisma.module.js';
-import { HealthModule } from './health/health.module.js';
-import { TenantModule } from './tenant/tenant.module.js';
-import { Module } from '@nestjs/common';
-import { LoggerModule } from '@omnixys/logger-ts';
 import { BannerService } from './config/banner.service.js';
 import { env } from './config/env.js';
+import { HealthModule } from './health/health.module.js';
+import { PrismaModule } from './prisma/prisma.module.js';
+import { TenantModule } from './tenant/tenant.module.js';
+import { Module } from '@nestjs/common';
 import { OmnixysGraphQLModule } from '@omnixys/graphql-ts';
+import { LoggerModule } from '@omnixys/logger-ts';
 import type { FastifyRequest, FastifyReply } from 'fastify';
 
-const {
-  SERVICE,
-  LOG_BATCH_ENABLE,
-  LOG_BATCH_FLUSH_INTERVAL,
-  LOG_BATCH_MAX_SIZE,
-  SCHEMA_TARGET,
-} = env;
-
+const { SERVICE, LOG_BATCH_ENABLE, LOG_BATCH_FLUSH_INTERVAL, LOG_BATCH_MAX_SIZE, SCHEMA_TARGET } =
+  env;
 
 @Module({
   imports: [
@@ -44,6 +38,6 @@ const {
     HealthModule,
     TenantModule,
   ],
-    providers: [BannerService],
+  providers: [BannerService],
 })
 export class AppModule {}

@@ -1,7 +1,7 @@
 import { env } from '../../config/env.js';
+import * as grpc from '@grpc/grpc-js';
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { RpcException } from '@nestjs/microservices';
-import * as grpc from '@grpc/grpc-js';
 import { createHash, timingSafeEqual } from 'node:crypto';
 
 const WRITE_METHODS = new Set([
@@ -76,7 +76,9 @@ export class GrpcCallerGuard implements CanActivate {
     return true;
   }
 
-  private extractAuthorization(call: GrpcCallContext | undefined): string | undefined {
+  private extractAuthorization(
+    call: GrpcCallContext | undefined,
+  ): string | undefined {
     let metadata: GrpcMetadata | undefined;
     if (call?.metadata && typeof call.metadata.get === 'function') {
       metadata = call.metadata;

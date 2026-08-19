@@ -47,17 +47,34 @@ export const env = {
   GRPC_HOST: getEnv('GRPC_HOST', '0.0.0.0', { required: true }),
   GRPC_PORT: getEnv('GRPC_PORT', '50052'),
 
-    /** Per-caller service tokens for gRPC caller authentication. */
-  TENANT_GRPC_AUTHENTICATION_TOKEN:getEnv('TENANT_GRPC_AUTHENTICATION_TOKEN', 'dev-authentication-service-token'),
-  TENANT_GRPC_GATEWAY_TOKEN: getEnv('TENANT_GRPC_GATEWAY_TOKEN', 'dev-gateway-service-token'),
-  TENANT_GRPC_SERVICE_TOKEN: getEnv('TENANT_GRPC_SERVICE_TOKEN', 'dev-tenant-service-token'),
+  /** Per-caller service tokens for gRPC caller authentication. */
+  TENANT_GRPC_AUTHENTICATION_TOKEN: getEnv(
+    'TENANT_GRPC_AUTHENTICATION_TOKEN',
+    'dev-authentication-service-token',
+  ),
+  TENANT_GRPC_GATEWAY_TOKEN: getEnv(
+    'TENANT_GRPC_GATEWAY_TOKEN',
+    'dev-gateway-service-token',
+  ),
+  TENANT_GRPC_SERVICE_TOKEN: getEnv(
+    'TENANT_GRPC_SERVICE_TOKEN',
+    'dev-tenant-service-token',
+  ),
 
-  TENANT_GRPC_READ_CALLERS: getEnv('TENANT_GRPC_READ_CALLERS', 'authentication,gateway,service', {
-    transform: splitCallers,
-  }),
-  TENANT_GRPC_WRITE_CALLERS: getEnv('TENANT_GRPC_WRITE_CALLERS', 'authentication', {
-    transform: splitCallers,
-  }),
+  TENANT_GRPC_READ_CALLERS: getEnv(
+    'TENANT_GRPC_READ_CALLERS',
+    'authentication,gateway,service',
+    {
+      transform: splitCallers,
+    },
+  ),
+  TENANT_GRPC_WRITE_CALLERS: getEnv(
+    'TENANT_GRPC_WRITE_CALLERS',
+    'authentication',
+    {
+      transform: splitCallers,
+    },
+  ),
 
   NODE_ENV: getEnv('NODE_ENV', 'development'),
   PORT: getEnv('PORT', '4000', { transform: toNumber }),
@@ -66,7 +83,6 @@ export const env = {
   SCHEMA_TARGET: getEnv('SCHEMA_TARGET', 'true'),
   HTTPS: getEnv('HTTPS', 'false', { transform: toBool }),
   KEYS_PATH: getEnv('KEYS_PATH', './keys'),
-
 
   LOG_DEFAULT: getEnv('LOG_DEFAULT', 'false', { transform: toBool }),
   LOG_DIRECTORY: getEnv('LOG_DIRECTORY', 'log'),
@@ -118,7 +134,6 @@ export const env = {
   KC_CLIENT_ID: getEnv('KC_CLIENT_ID', 'camunda-identity'),
   KC_ADMIN_USERNAME: getEnv('KC_ADMIN_USERNAME', 'admin'),
   KC_ADMIN_PASSWORD: getEnv('KC_ADMIN_PASSWORD', 'admin'),
-
 
   COOKIE_SECRET: getEnv('COOKIE_SECRET', 'omnixys-development-secret', {
     required: true,

@@ -1,16 +1,3 @@
-import {
-  MembershipWriteService,
-} from '../domain/membership-write.service.js';
-import { TenantReadService } from '../domain/tenant-read.service.js';
-import { TenantWriteService } from '../domain/tenant-write.service.js';
-import { GrpcCallerGuard } from './grpc-caller.guard.js';
-import {
-  TenantDomainError,
-  toGrpcException,
-} from '../errors/tenant.error.js';
-import { Controller, UseGuards } from '@nestjs/common';
-import { GrpcMethod, RpcException } from '@nestjs/microservices';
-import * as grpc from '@grpc/grpc-js';
 import { env } from '../../config/env.js';
 import type {
   MembershipRole,
@@ -19,14 +6,17 @@ import type {
   TenantMembership,
   TenantStatus,
 } from '../../prisma/generated/client.js';
+import { MembershipWriteService } from '../domain/membership-write.service.js';
+import { TenantReadService } from '../domain/tenant-read.service.js';
+import { TenantWriteService } from '../domain/tenant-write.service.js';
+import { TenantDomainError, toGrpcException } from '../errors/tenant.error.js';
+import { GrpcCallerGuard } from './grpc-caller.guard.js';
+import * as grpc from '@grpc/grpc-js';
+import { Controller, UseGuards } from '@nestjs/common';
+import { GrpcMethod, RpcException } from '@nestjs/microservices';
 
 const MEMBERSHIP_ROLES = new Set(['OWNER', 'ADMIN', 'MEMBER', 'GUEST']);
-const MEMBERSHIP_STATUSES = new Set([
-  'ACTIVE',
-  'INVITED',
-  'SUSPENDED',
-  'REVOKED',
-]);
+const MEMBERSHIP_STATUSES = new Set(['ACTIVE', 'INVITED', 'SUSPENDED', 'REVOKED']);
 
 function requireRole(value: string): MembershipRole {
   if (!MEMBERSHIP_ROLES.has(value)) {
@@ -96,10 +86,7 @@ export class TenantController {
   @GrpcMethod('TenantService', 'ValidateMembership')
   async validateMembership(data: { tenantId: string; userId: string }) {
     try {
-      let result = await this.tenantRead.validateMembership(
-        data.tenantId,
-        data.userId,
-      );
+      let result = await this.tenantRead.validateMembership(data.tenantId, data.userId);
 
       if (
         env.AUTO_PROVISION_MEMBERSHIPS &&
@@ -114,10 +101,7 @@ export class TenantController {
           status: 'ACTIVE',
           createdBy: 'system',
         });
-        result = await this.tenantRead.validateMembership(
-          data.tenantId,
-          data.userId,
-        );
+        result = await this.tenantRead.validateMembership(data.tenantId, data.userId);
       }
 
       return {
@@ -138,9 +122,7 @@ export class TenantController {
     try {
       const memberships = await this.tenantRead.listUserTenants(data.userId);
       return {
-        memberships: memberships.map((membership) =>
-          toMembershipProto(membership),
-        ),
+        memberships: memberships.map((membership) => toMembershipProto(membership)),
       };
     } catch (error) {
       this.throwRpc(error);
@@ -148,24 +130,21 @@ export class TenantController {
   }
 
   @GrpcMethod('TenantService', 'CreateMembership')
-  async createMembership(
-    data: {
-      tenantId: string;
-      userId: string;
-      role: string;
-      status: string;
-      createdBy: string;
-    },
-  ) {
+  async createMembership(data: {
+    tenantId: string;
+    userId: string;
+    role: string;
+    status: string;
+    createdBy: string;
+  }) {
     try {
-      const { membership, created } =
-        await this.membershipWrite.createMembership({
-          tenantId: data.tenantId,
-          userId: data.userId,
-          role: requireRole(data.role),
-          status: requireMembershipStatus(data.status),
-          createdBy: data.createdBy,
-        });
+      const { membership, created } = await this.membershipWrite.createMembership({
+        tenantId: data.tenantId,
+        userId: data.userId,
+        role: requireRole(data.role),
+        status: requireMembershipStatus(data.status),
+        createdBy: data.createdBy,
+      });
       return {
         membership: toMembershipProto(membership),
         created,
@@ -176,14 +155,12 @@ export class TenantController {
   }
 
   @GrpcMethod('TenantService', 'UpdateMembershipStatus')
-  async updateMembershipStatus(
-    data: {
-      tenantId: string;
-      userId: string;
-      status: string;
-      updatedBy: string;
-    },
-  ) {
+  async updateMembershipStatus(data: {
+    tenantId: string;
+    userId: string;
+    status: string;
+    updatedBy: string;
+  }) {
     try {
       const membership = await this.membershipWrite.updateMembershipStatus({
         tenantId: data.tenantId,
@@ -198,9 +175,7 @@ export class TenantController {
   }
 
   @GrpcMethod('TenantService', 'RevokeMembership')
-  async revokeMembership(
-    data: { tenantId: string; userId: string; updatedBy: string },
-  ) {
+  async revokeMembership(data: { tenantId: string; userId: string; updatedBy: string }) {
     try {
       const membership = await this.membershipWrite.revokeMembership(
         data.tenantId,
@@ -228,15 +203,13 @@ export class TenantController {
   }
 
   @GrpcMethod('TenantService', 'UpdateTenant')
-  async updateTenant(
-    data: {
-      id: string;
-      name?: string;
-      slug?: string;
-      status?: string;
-      updated_by: string;
-    },
-  ) {
+  async updateTenant(data: {
+    id: string;
+    name?: string;
+    slug?: string;
+    status?: string;
+    updated_by: string;
+  }) {
     try {
       const tenant = await this.tenantWrite.updateTenant({
         id: data.id,

@@ -1,3 +1,8 @@
+import type {
+  MembershipRole,
+  MembershipStatus,
+  TenantMembership,
+} from '../../prisma/generated/client.js';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import {
   InvalidTenantIdError,
@@ -8,11 +13,6 @@ import {
 } from '../errors/tenant.error.js';
 import { Injectable } from '@nestjs/common';
 import { isUUID } from 'class-validator';
-import type {
-  MembershipRole,
-  MembershipStatus,
-  TenantMembership,
-} from '../../prisma/generated/client.js';
 
 export interface CreateMembershipInput {
   tenantId: string;
@@ -104,9 +104,7 @@ export class MembershipWriteService {
     return { membership, created: false };
   }
 
-  async updateMembershipStatus(
-    input: UpdateMembershipStatusInput,
-  ): Promise<TenantMembership> {
+  async updateMembershipStatus(input: UpdateMembershipStatusInput): Promise<TenantMembership> {
     this.assertTenantId(input.tenantId);
     this.assertUserId(input.userId);
 

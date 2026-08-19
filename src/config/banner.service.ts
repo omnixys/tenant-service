@@ -12,15 +12,7 @@ export class BannerService implements OnApplicationBootstrap {
   readonly #logger = getLogger(BannerService.name);
 
   onApplicationBootstrap(): void {
-    const {
-      host,
-      nodeEnv,
-      port,
-      protocoll,
-      keysPath,
-      logger,
-      serviceName,
-    } = nodeConfig;
+    const { host, nodeEnv, port, protocoll, keysPath, logger, serviceName } = nodeConfig;
 
     this.#generateBanner(serviceName);
 
@@ -49,11 +41,28 @@ export class BannerService implements OnApplicationBootstrap {
 
   #printEnv(nodeEnv: string): void {
     const groups = new Map<string, [string, string][]>();
-    const order = ['LOGGER', 'KEYCLOAK', 'HEALTH', 'KAFKA', 'CACHE', 'STORAGE', 'GRPC', 'GEOCODING', 'DATABASE', 'SUBGRAPHS', 'OBSERVABILITY', 'GENERAL'];
+    const order = [
+      'LOGGER',
+      'KEYCLOAK',
+      'HEALTH',
+      'KAFKA',
+      'CACHE',
+      'STORAGE',
+      'GRPC',
+      'GEOCODING',
+      'DATABASE',
+      'SUBGRAPHS',
+      'OBSERVABILITY',
+      'GENERAL',
+    ];
     for (const s of order) groups.set(s, []);
 
     for (const [key, value] of Object.entries(env)) {
-      if (key.startsWith('LOG_') || ['NODE_ENV', 'PORT', 'SERVICE', 'HTTPS', 'KEYS_PATH'].includes(key)) continue;
+      if (
+        key.startsWith('LOG_') ||
+        ['NODE_ENV', 'PORT', 'SERVICE', 'HTTPS', 'KEYS_PATH'].includes(key)
+      )
+        continue;
       const section = this.#sectionFor(key);
       groups.get(section)?.push([key, String(value)]);
     }
@@ -63,7 +72,9 @@ export class BannerService implements OnApplicationBootstrap {
       if (entries.length === 0) continue;
       this.#logger.info(chalk.green(`==============${section}===========`));
       for (const [key, value] of entries) {
-        this.#logger.info(chalk.cyan(`${key}: `) + chalk.yellow(this.#displayValue(key, value, nodeEnv)));
+        this.#logger.info(
+          chalk.cyan(`${key}: `) + chalk.yellow(this.#displayValue(key, value, nodeEnv)),
+        );
       }
     }
   }
@@ -77,8 +88,23 @@ export class BannerService implements OnApplicationBootstrap {
     if (key.includes('GRPC')) return 'GRPC';
     if (key.startsWith('GEOCODING_')) return 'GEOCODING';
     if (key === 'DATABASE_URL') return 'DATABASE';
-    if (key.startsWith('ANALYTICS_') || key.startsWith('AUTHENTICATION_') || key.startsWith('EVENT_') || key.startsWith('INVITATION_') || key.startsWith('TICKET_') || key.startsWith('NOTIFICATION_') || key.startsWith('USER_') || key.startsWith('SEAT_') || key.startsWith('ADDRESS_') || key.startsWith('CHAT_') || key.startsWith('COMMUNICATION_GATEWAY_') || key.startsWith('SUPERGRAPH_')) return 'SUBGRAPHS';
-    if (key.startsWith('OTEL_') || key.startsWith('TEMPO_') || key.startsWith('PROMETHEUS_')) return 'OBSERVABILITY';
+    if (
+      key.startsWith('ANALYTICS_') ||
+      key.startsWith('AUTHENTICATION_') ||
+      key.startsWith('EVENT_') ||
+      key.startsWith('INVITATION_') ||
+      key.startsWith('TICKET_') ||
+      key.startsWith('NOTIFICATION_') ||
+      key.startsWith('USER_') ||
+      key.startsWith('SEAT_') ||
+      key.startsWith('ADDRESS_') ||
+      key.startsWith('CHAT_') ||
+      key.startsWith('COMMUNICATION_GATEWAY_') ||
+      key.startsWith('SUPERGRAPH_')
+    )
+      return 'SUBGRAPHS';
+    if (key.startsWith('OTEL_') || key.startsWith('TEMPO_') || key.startsWith('PROMETHEUS_'))
+      return 'OBSERVABILITY';
     return 'GENERAL';
   }
 
@@ -90,7 +116,9 @@ export class BannerService implements OnApplicationBootstrap {
   }
 
   #isSensitiveKey(key: string): boolean {
-    return /SECRET|TOKEN|PASSWORD|API_KEY|ACCESS_KEY|ENCRYPTION_KEY|JWE_KEY|JWS_KEYS|HMAC_SECRET|FINGERPRINT_SECRET|DATABASE_URL|CLIENT_SECRET/.test(key);
+    return /SECRET|TOKEN|PASSWORD|API_KEY|ACCESS_KEY|ENCRYPTION_KEY|JWE_KEY|JWS_KEYS|HMAC_SECRET|FINGERPRINT_SECRET|DATABASE_URL|CLIENT_SECRET/.test(
+      key,
+    );
   }
 
   #generateBanner(serviceName: string): void {

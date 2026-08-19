@@ -15,10 +15,20 @@
  * For more information, visit <https://www.gnu.org/licenses/>.
  */
 
-import { TenantWriteService } from '../domain/tenant-write.service.js';
-import { TenantReadService } from '../domain/tenant-read.service.js';
-import { Resolver, Query, Mutation, Parent, ResolveReference, Args, InputType, Field, ObjectType } from '@nestjs/graphql';
 import { TenantStatus } from '../../prisma/generated/client.js';
+import { TenantReadService } from '../domain/tenant-read.service.js';
+import { TenantWriteService } from '../domain/tenant-write.service.js';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Parent,
+  ResolveReference,
+  Args,
+  InputType,
+  Field,
+  ObjectType,
+} from '@nestjs/graphql';
 
 @ObjectType()
 class TenantType {
@@ -98,7 +108,7 @@ export class TenantResolver {
     @Args('status', { nullable: true }) status?: TenantStatus,
   ): Promise<TenantType[]> {
     const tenants = await this.tenantWriteService.listTenants({ status });
-    return tenants.map(t => this.#toTenantType(t));
+    return tenants.map((t) => this.#toTenantType(t));
   }
 
   @Mutation(() => TenantType)
@@ -132,7 +142,14 @@ export class TenantResolver {
     return this.#toTenantType(tenant);
   }
 
-  #toTenantType(tenant: { id: string; name: string; slug: string; status: string; createdAt?: Date; updatedAt?: Date }): TenantType {
+  #toTenantType(tenant: {
+    id: string;
+    name: string;
+    slug: string;
+    status: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+  }): TenantType {
     const result = new TenantType();
     result.id = tenant.id;
     result.name = tenant.name;
