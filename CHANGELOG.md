@@ -3,6 +3,16 @@
 All notable changes in this project will be documented in this file.
 
 
+## [1.0.1](https://github.com/omnixys/tenant-service/compare/v1.0.0...v1.0.1) (2026-08-19)
+
+### Agent
+
+* **Agent:** add repository development instructions ([](https://github.com/omnixys/tenant-service/commit/ea1bc924f7e5c88d505516589cf39b9d1f6f208c))
+
+### Tooling
+
+* **Tooling:** fix format:check, test:unit, and prettier formatting ([](https://github.com/omnixys/tenant-service/commit/2cd76bdec718959a558e722261d4ad475939a21a))
+
 ## 1.0.0 (2026-08-03)
 
 ### Init
