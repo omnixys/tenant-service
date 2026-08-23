@@ -3,6 +3,12 @@
 All notable changes in this project will be documented in this file.
 
 
+## [1.0.3](https://github.com/omnixys/tenant-service/compare/v1.0.2...v1.0.3) (2026-08-23)
+
+### Logger
+
+* **Logger:** fix terminal logger ([](https://github.com/omnixys/tenant-service/commit/4fe886abcb7830cfadcf71275e6e93d92819ab16))
+
 ## [1.0.2](https://github.com/omnixys/tenant-service/compare/v1.0.1...v1.0.2) (2026-08-23)
 
 ### Observability

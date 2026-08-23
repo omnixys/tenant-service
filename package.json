@@ -1,6 +1,6 @@
 {
   "name": "tenant-service",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Omnixys tenant service - authoritative source for tenants and memberships",
   "author": {
     "name": "Caleb Gyamfi",
