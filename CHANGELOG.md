@@ -3,6 +3,12 @@
 All notable changes in this project will be documented in this file.
 
 
+## [1.0.2](https://github.com/omnixys/tenant-service/compare/v1.0.1...v1.0.2) (2026-08-23)
+
+### Observability
+
+* **Observability:** update dependency ([](https://github.com/omnixys/tenant-service/commit/2e66c0a6bde3171f8e5d03bb753bd86ea6220943))
+
 ## [1.0.1](https://github.com/omnixys/tenant-service/compare/v1.0.0...v1.0.1) (2026-08-19)
 
 ### Agent
