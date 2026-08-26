@@ -3,6 +3,20 @@
 All notable changes in this project will be documented in this file.
 
 
+## [1.1.0](https://github.com/omnixys/tenant-service/compare/v1.0.3...v1.1.0) (2026-08-26)
+
+### Deps
+
+* **Deps:** update omnixys ts packages ([](https://github.com/omnixys/tenant-service/commit/88507c12823c9cb4ff1494b3c386868b975e63fb))
+
+### Otel
+
+* **Otel:** add otel logs ([](https://github.com/omnixys/tenant-service/commit/c71870a64f28a17e58ce9c25026b212d7812fc66))
+
+### Seed
+
+* **Seed:** bootstrap tenant memberships for omnixys users ([](https://github.com/omnixys/tenant-service/commit/9b8061188e015ebfb78e118026bde9cd2d7ae544))
+
 ## [1.0.3](https://github.com/omnixys/tenant-service/compare/v1.0.2...v1.0.3) (2026-08-23)
 
 ### Logger
