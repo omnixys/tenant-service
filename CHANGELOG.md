@@ -3,6 +3,13 @@
 All notable changes in this project will be documented in this file.
 
 
+## [1.1.1](https://github.com/omnixys/tenant-service/compare/v1.1.0...v1.1.1) (2026-08-26)
+
+### Deps
+
+* **Deps:** update logger to 3.2.6 ([](https://github.com/omnixys/tenant-service/commit/b4d9424164360e5f1178bb91722ca764df0b0d9f))
+* **Deps:** update shared TypeScript packages ([](https://github.com/omnixys/tenant-service/commit/45faeb47ca3365f0318e59ab309c274286067c45))
+
 ## [1.1.0](https://github.com/omnixys/tenant-service/compare/v1.0.3...v1.1.0) (2026-08-26)
 
 ### Deps
