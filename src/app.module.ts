@@ -6,10 +6,22 @@ import { TenantModule } from './tenant/tenant.module.js';
 import { Module } from '@nestjs/common';
 import { OmnixysGraphQLModule } from '@omnixys/graphql-ts';
 import { LoggerModule } from '@omnixys/logger-ts';
+import { ObservabilityModule } from '@omnixys/observability-ts';
 import type { FastifyRequest, FastifyReply } from 'fastify';
 
-const { SERVICE, LOG_BATCH_ENABLE, LOG_BATCH_FLUSH_INTERVAL, LOG_BATCH_MAX_SIZE, SCHEMA_TARGET } =
-  env;
+const {
+  SERVICE,
+  LOG_BATCH_ENABLE,
+  LOG_BATCH_FLUSH_INTERVAL,
+  LOG_BATCH_MAX_SIZE,
+  SCHEMA_TARGET,
+  OTEL_LOGS_ENABLED,
+  OTEL_URI,
+  OTEL_TRANSPORT_MODE,
+  OTEL_SAMPLING_RATIO,
+  PROMETHEUS_ENABLE,
+  PROMETHEUS_PORT,
+} = env;
 
 @Module({
   imports: [
@@ -24,6 +36,21 @@ const { SERVICE, LOG_BATCH_ENABLE, LOG_BATCH_FLUSH_INTERVAL, LOG_BATCH_MAX_SIZE,
           : SCHEMA_TARGET === 'false'
             ? false
             : { path: 'dist/schema.gql', federation: 2 },
+    }),
+    ObservabilityModule.forRoot({
+      serviceName: SERVICE,
+      otel: {
+        endpoint: OTEL_URI,
+        transport: OTEL_TRANSPORT_MODE as 'http' | 'grpc',
+        samplingRatio: OTEL_SAMPLING_RATIO,
+      },
+      logs: {
+        enabled: OTEL_LOGS_ENABLED,
+      },
+      metrics: {
+        port: PROMETHEUS_PORT,
+        enabled: PROMETHEUS_ENABLE,
+      },
     }),
     LoggerModule.forRoot({
       serviceName: SERVICE,
