@@ -4,3 +4,5 @@ allowBuilds:
   esbuild: true
   prisma: true
   protobufjs: true
+overrides:
+  fastify: 5.8.5
