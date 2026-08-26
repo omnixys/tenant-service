@@ -10,7 +10,7 @@
 Omnixys Tenant Service – tenant management and lifecycle.
 
 - Repository path: `services/tenant` (relative to the Omnixys root)
-- Package: `tenant-service` (version: 1.0.0)
+- Package: `tenant-service` (version: 1.1.0)
 - Runtime: Node >=25.8.2 (pnpm >=10.33.0)
 - Kind: Service
 
