@@ -3,6 +3,12 @@
 All notable changes in this project will be documented in this file.
 
 
+## [1.1.2](https://github.com/omnixys/tenant-service/compare/v1.1.1...v1.1.2) (2026-08-26)
+
+### Build
+
+* **Build:** fix build errors ([](https://github.com/omnixys/tenant-service/commit/d157a31996b58e4186a03aaa5e1ac20063caa2aa))
+
 ## [1.1.1](https://github.com/omnixys/tenant-service/compare/v1.1.0...v1.1.1) (2026-08-26)
 
 ### Deps
