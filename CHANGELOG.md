@@ -3,6 +3,12 @@
 All notable changes in this project will be documented in this file.
 
 
+## [1.1.5](https://github.com/omnixys/tenant-service/compare/v1.1.4...v1.1.5) (2026-08-28)
+
+### Deps
+
+* **Deps:** update contracts-ts ([](https://github.com/omnixys/tenant-service/commit/28bc417df05e8dbd66143cf13be0a4cfef42240b))
+
 ## [1.1.4](https://github.com/omnixys/tenant-service/compare/v1.1.3...v1.1.4) (2026-08-26)
 
 ### Build
