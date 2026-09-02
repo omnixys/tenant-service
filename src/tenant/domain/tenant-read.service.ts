@@ -22,13 +22,13 @@ export class TenantReadService {
   constructor(private readonly prisma: PrismaService) {}
 
   private assertTenantId(tenantId: string): void {
-    if (!isUUID(tenantId, '4')) {
+    if (!isUUID(tenantId)) {
       throw new InvalidTenantIdError(tenantId);
     }
   }
 
   private assertUserId(userId: string): void {
-    if (!isUUID(userId, '4')) {
+    if (!isUUID(userId)) {
       throw new InvalidUserIdError(userId);
     }
   }

@@ -38,7 +38,7 @@ export class TenantWriteService {
   constructor(private readonly prisma: PrismaService) {}
 
   private assertTenantId(tenantId: string): void {
-    if (!isUUID(tenantId, '4')) {
+    if (!isUUID(tenantId)) {
       throw new InvalidTenantIdError(tenantId);
     }
   }
