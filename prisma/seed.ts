@@ -16,20 +16,20 @@ interface BootstrapMembership {
 }
 
 const BOOTSTRAP_MEMBERSHIPS: readonly BootstrapMembership[] = [
-  { userId: 'dde8114c-2637-462a-90b9-413924fa3f55', role: 'OWNER' },
-  { userId: '694d2e8e-0932-4c8f-a1c4-e300dc235be4', role: 'ADMIN' },
-  { userId: 'f9de3f8a-5b79-4f3a-9267-10c1b9ce2a03', role: 'ADMIN' },
-  { userId: 'ae489d9b-96ce-4942-bcb1-c2e2a0c92e83', role: 'GUEST' },
-  { userId: '20e7e44e-9bcd-4016-bebd-36f8d75357b6', role: 'MEMBER' },
-  { userId: '9e219f6f-7706-4294-8b5b-a4105999846f', role: 'MEMBER' },
-  { userId: '18bbde19-7e76-45dc-b204-f5c397e11362', role: 'MEMBER' },
-  { userId: '550e8400-e29b-41d4-a716-446655440000', role: 'MEMBER' },
-  { userId: '550e8400-e29b-41d4-a716-446655440001', role: 'MEMBER' },
+  { userId: '01a05f6a-5800-71a3-b827-60db5e847bd1', role: 'OWNER' },
+  { userId: '01a05f6a-5800-7e09-a743-5c1c7b465e5b', role: 'ADMIN' },
+  { userId: '01a05f6a-5800-74a8-8dc6-312ac2756d62', role: 'ADMIN' },
+  { userId: '01a05f6a-5800-7afc-8e7a-1e9ca63cf5c9', role: 'GUEST' },
+  { userId: '01a05f6a-5800-712b-b9c3-f3f31e8e65ab', role: 'MEMBER' },
+  { userId: '01a05f6a-5800-716e-8828-74b196e01da9', role: 'MEMBER' },
+  { userId: '01a05f6a-5800-784e-bacf-741e5f8b157c', role: 'MEMBER' },
+  { userId: '01a05f6a-5800-7d0d-aaef-caa8cdb4ef49', role: 'MEMBER' },
+  { userId: '01a05f6a-5800-7613-8249-268b35dc31b9', role: 'MEMBER' },
 ];
 
 function validateTenantId(id: string | undefined, label: string): string {
-  if (!id || !isUUID(id, '4')) {
-    throw new Error(`[SEED] ${label} must be a valid UUID v4`);
+  if (!id || !isUUID(id)) {
+    throw new Error(`[SEED] ${label} must be a valid UUID`);
   }
   return id;
 }
