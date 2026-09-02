@@ -82,15 +82,15 @@ async function main(): Promise<void> {
             status: 'ACTIVE',
             deletedAt: null,
             deletedBy: null,
-            updatedBy: 'seed',
+            updatedBy: '4db494df-c7b0-742a-bd5a-23c92d0cd09d',
           },
           create: {
             tenantId: bootstrapTenantId,
             userId,
             role: membership.role,
             status: 'ACTIVE',
-            createdBy: 'seed',
-            updatedBy: 'seed',
+            createdBy: '4db494df-c7b0-742a-bd5a-23c92d0cd09d',
+            updatedBy: '4db494df-c7b0-742a-bd5a-23c92d0cd09d',
           },
         }),
       );
