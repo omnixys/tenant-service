@@ -4,5 +4,7 @@ allowBuilds:
   esbuild: true
   prisma: true
   protobufjs: true
+  '@apollo/protobufjs': true
+  argon2: true
 overrides:
   fastify: 5.8.5
