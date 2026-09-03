@@ -26,10 +26,10 @@ CREATE TABLE "tenant_membership" (
     "user_id" UUID NOT NULL,
     "role" "MembershipRole" NOT NULL,
     "status" "MembershipStatus" NOT NULL DEFAULT 'ACTIVE',
-    "created_by" TEXT NOT NULL,
-    "updated_by" TEXT NOT NULL,
+    "created_by" UUID NOT NULL,
+    "updated_by" UUID NOT NULL,
     "deleted_at" TIMESTAMP(3),
-    "deleted_by" TEXT,
+    "deleted_by" UUID,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
