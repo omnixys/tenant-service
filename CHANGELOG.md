@@ -3,6 +3,36 @@
 All notable changes in this project will be documented in this file.
 
 
+## [2.0.0](https://github.com/omnixys/tenant-service/compare/v1.1.5...v2.0.0) (2026-09-05)
+
+### Deps
+
+* **Deps:** update omnixys deps ([](https://github.com/omnixys/tenant-service/commit/de9775f80f74d0bd8735ac6253dbadc180828d1f))
+
+### Identity
+
+* **Identity:** document U/K identity conventions in AGENTS.md ([](https://github.com/omnixys/tenant-service/commit/1b28d19621f53eae5b2736934e59f21949b32704))
+* **Identity:** replace zero-ID placeholders 'seed'/'system' with UUIDv7 in createdBy/updatedBy ([](https://github.com/omnixys/tenant-service/commit/a6157bebcc962b0d986929d33f624d163f27b520))
+
+### Other
+
+* **Other:** Merge pull request #1 from omnixys/migration/uuid-v7 ([](https://github.com/omnixys/tenant-service/commit/896ab34691564eee67509c451c0f8224e5381b5a)), closes [#1](https://github.com/omnixys/tenant-service/issues/1)
+
+### Runtime
+
+* **Runtime:** require node 26.8.1 and pnpm 11.24.0 ([](https://github.com/omnixys/tenant-service/commit/9425286c97baa4412553ab46edb076f6a6435bde))
+
+### Tenant
+
+* **Tenant:** rewire omnixys service deps to file: ([](https://github.com/omnixys/tenant-service/commit/87cac2ad2cbaed5f772824b1575fe9c3adca0a50))
+* **Tenant:** align seed to deterministic UUIDv7 user ids and version-agnostic UUIDs ([](https://github.com/omnixys/tenant-service/commit/4dd7230b9611176a761e6f72fdb688dc08bc7ee6))
+* **Tenant:** type membership audit refs as user UUID ([](https://github.com/omnixys/tenant-service/commit/9db44c9c3aa5c08144d89c7719d8a493db899597))
+* **Tenant:** accept UUIDv7 for tenant and user ids ([](https://github.com/omnixys/tenant-service/commit/42c3edb9a5054beb1a71a9dfac704a1b51fa3c29))
+
+### V7
+
+* **V7:** add UUIDv7 ([](https://github.com/omnixys/tenant-service/commit/c1390fc3c024783d561008ffc13cddeb12070644))
+
 ## [1.1.5](https://github.com/omnixys/tenant-service/compare/v1.1.4...v1.1.5) (2026-08-28)
 
 ### Deps
