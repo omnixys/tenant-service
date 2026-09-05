@@ -36,10 +36,10 @@ enum MembershipStatus {
 }
 
 model Tenant {
-  id          String            @id @default(uuid()) @map("id") @db.Uuid
-  name        String            @map("name")
-  slug        String            @unique @map("slug")
-  status      TenantStatus      @default(ACTIVE) @map("status")
+  id     String       @id @default(uuid()) @map("id") @db.Uuid
+  name   String       @map("name")
+  slug   String       @unique @map("slug")
+  status TenantStatus @default(ACTIVE) @map("status")
 
   memberships TenantMembership[]
 
@@ -51,16 +51,16 @@ model Tenant {
 }
 
 model TenantMembership {
-  id        String           @id @default(uuid()) @map("id") @db.Uuid
-  tenantId  String           @map("tenant_id") @db.Uuid
-  userId    String           @map("user_id") @db.Uuid
-  role      MembershipRole   @map("role")
-  status    MembershipStatus @default(ACTIVE) @map("status")
+  id       String           @id @default(uuid()) @map("id") @db.Uuid
+  tenantId String           @map("tenant_id") @db.Uuid
+  userId   String           @map("user_id") @db.Uuid
+  role     MembershipRole   @map("role")
+  status   MembershipStatus @default(ACTIVE) @map("status")
 
-  createdBy String @map("created_by")
-  updatedBy String @map("updated_by")
+  createdBy String    @map("created_by") @db.Uuid
+  updatedBy String    @map("updated_by") @db.Uuid
   deletedAt DateTime? @map("deleted_at")
-  deletedBy String? @map("deleted_by")
+  deletedBy String?   @map("deleted_by") @db.Uuid
 
   tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
 

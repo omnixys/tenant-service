@@ -99,7 +99,7 @@ export class TenantController {
           userId: data.userId,
           role: 'MEMBER',
           status: 'ACTIVE',
-          createdBy: 'system',
+          createdBy: '804861a1-482c-7965-8928-59b05e0c1a1f',
         });
         result = await this.tenantRead.validateMembership(data.tenantId, data.userId);
       }

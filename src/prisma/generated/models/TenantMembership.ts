@@ -224,10 +224,10 @@ export type TenantMembershipWhereInput = {
   userId?: Prisma.UuidFilter<"TenantMembership"> | string
   role?: Prisma.EnumMembershipRoleFilter<"TenantMembership"> | $Enums.MembershipRole
   status?: Prisma.EnumMembershipStatusFilter<"TenantMembership"> | $Enums.MembershipStatus
-  createdBy?: Prisma.StringFilter<"TenantMembership"> | string
-  updatedBy?: Prisma.StringFilter<"TenantMembership"> | string
+  createdBy?: Prisma.UuidFilter<"TenantMembership"> | string
+  updatedBy?: Prisma.UuidFilter<"TenantMembership"> | string
   deletedAt?: Prisma.DateTimeNullableFilter<"TenantMembership"> | Date | string | null
-  deletedBy?: Prisma.StringNullableFilter<"TenantMembership"> | string | null
+  deletedBy?: Prisma.UuidNullableFilter<"TenantMembership"> | string | null
   createdAt?: Prisma.DateTimeFilter<"TenantMembership"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TenantMembership"> | Date | string
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
@@ -258,10 +258,10 @@ export type TenantMembershipWhereUniqueInput = Prisma.AtLeast<{
   userId?: Prisma.UuidFilter<"TenantMembership"> | string
   role?: Prisma.EnumMembershipRoleFilter<"TenantMembership"> | $Enums.MembershipRole
   status?: Prisma.EnumMembershipStatusFilter<"TenantMembership"> | $Enums.MembershipStatus
-  createdBy?: Prisma.StringFilter<"TenantMembership"> | string
-  updatedBy?: Prisma.StringFilter<"TenantMembership"> | string
+  createdBy?: Prisma.UuidFilter<"TenantMembership"> | string
+  updatedBy?: Prisma.UuidFilter<"TenantMembership"> | string
   deletedAt?: Prisma.DateTimeNullableFilter<"TenantMembership"> | Date | string | null
-  deletedBy?: Prisma.StringNullableFilter<"TenantMembership"> | string | null
+  deletedBy?: Prisma.UuidNullableFilter<"TenantMembership"> | string | null
   createdAt?: Prisma.DateTimeFilter<"TenantMembership"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TenantMembership"> | Date | string
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
@@ -293,10 +293,10 @@ export type TenantMembershipScalarWhereWithAggregatesInput = {
   userId?: Prisma.UuidWithAggregatesFilter<"TenantMembership"> | string
   role?: Prisma.EnumMembershipRoleWithAggregatesFilter<"TenantMembership"> | $Enums.MembershipRole
   status?: Prisma.EnumMembershipStatusWithAggregatesFilter<"TenantMembership"> | $Enums.MembershipStatus
-  createdBy?: Prisma.StringWithAggregatesFilter<"TenantMembership"> | string
-  updatedBy?: Prisma.StringWithAggregatesFilter<"TenantMembership"> | string
+  createdBy?: Prisma.UuidWithAggregatesFilter<"TenantMembership"> | string
+  updatedBy?: Prisma.UuidWithAggregatesFilter<"TenantMembership"> | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"TenantMembership"> | Date | string | null
-  deletedBy?: Prisma.StringNullableWithAggregatesFilter<"TenantMembership"> | string | null
+  deletedBy?: Prisma.UuidNullableWithAggregatesFilter<"TenantMembership"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"TenantMembership"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"TenantMembership"> | Date | string
 }
@@ -574,10 +574,10 @@ export type TenantMembershipScalarWhereInput = {
   userId?: Prisma.UuidFilter<"TenantMembership"> | string
   role?: Prisma.EnumMembershipRoleFilter<"TenantMembership"> | $Enums.MembershipRole
   status?: Prisma.EnumMembershipStatusFilter<"TenantMembership"> | $Enums.MembershipStatus
-  createdBy?: Prisma.StringFilter<"TenantMembership"> | string
-  updatedBy?: Prisma.StringFilter<"TenantMembership"> | string
+  createdBy?: Prisma.UuidFilter<"TenantMembership"> | string
+  updatedBy?: Prisma.UuidFilter<"TenantMembership"> | string
   deletedAt?: Prisma.DateTimeNullableFilter<"TenantMembership"> | Date | string | null
-  deletedBy?: Prisma.StringNullableFilter<"TenantMembership"> | string | null
+  deletedBy?: Prisma.UuidNullableFilter<"TenantMembership"> | string | null
   createdAt?: Prisma.DateTimeFilter<"TenantMembership"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TenantMembership"> | Date | string
 }
