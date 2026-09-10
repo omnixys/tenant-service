@@ -3,6 +3,12 @@
 All notable changes in this project will be documented in this file.
 
 
+## [2.0.1](https://github.com/omnixys/tenant-service/compare/v2.0.0...v2.0.1) (2026-09-10)
+
+### Deps
+
+* **Deps:** update graphql-ts ([](https://github.com/omnixys/tenant-service/commit/c945eaa220e9518c938a685a5f8eb4f5040a0487))
+
 ## [2.0.0](https://github.com/omnixys/tenant-service/compare/v1.1.5...v2.0.0) (2026-09-05)
 
 ### Deps
