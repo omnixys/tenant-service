@@ -1,6 +1,6 @@
 {
   "name": "tenant-service",
-  "version": "1.1.4",
+  "version": "2.0.3",
   "description": "Omnixys tenant service - authoritative source for tenants and memberships",
   "author": {
     "name": "Caleb Gyamfi",
@@ -18,10 +18,10 @@
   "license": "GPL-3.0-or-later",
   "type": "module",
   "private": false,
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@11.24.0",
   "engines": {
-    "node": ">=24.10.0",
-    "pnpm": ">=10.33.0"
+    "node": ">=26.8.1 <27",
+    "pnpm": ">=11.24.0"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -72,7 +72,7 @@
     "@nestjs/config": "^4.0.4",
     "@nestjs/core": "^11.2.3",
     "@nestjs/graphql": "^13.4.5",
-    "@nestjs/microservices": "^11.2.1",
+    "@nestjs/microservices": "^11.2.3",
     "@nestjs/platform-fastify": "^11.2.3",
     "@nestjs/terminus": "^11.1.1",
     "@omnixys/context-ts": "file:../../packages/ts/context",
@@ -83,16 +83,16 @@
     "@omnixys/logger-ts": "file:../../packages/ts/logger",
     "@omnixys/observability-ts": "file:../../packages/ts/observability",
     "@omnixys/security-ts": "file:../../packages/ts/security",
-    "@prisma/adapter-pg": "^7.9.1",
-    "@prisma/client": "^7.9.1",
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.10.0",
     "cfonts": "^3.3.1",
     "chalk": "^6.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.4",
     "dotenv": "^17.4.2",
-    "fastify": "^5.12.1",
+    "fastify": "5.8.5",
     "graphql": "^16.14.2",
-    "jose": "^6.2.10",
+    "jose": "^6.2.12",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2"
   },
@@ -107,24 +107,19 @@
     "@semantic-release/npm": "^13.1.5",
     "@semantic-release/release-notes-generator": "^14.1.1",
     "@tsconfig/node23": "^23.0.5",
-    "@types/node": "^22.20.1",
-    "eslint": "^10.9.0",
+    "@types/node": "^22.20.2",
+    "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.6",
-    "globals": "^17.11.0",
+    "globals": "^17.12.0",
     "prettier": "^3.9.6",
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-sort-imports": "^1.8.11",
-    "prisma": "^7.9.1",
+    "prisma": "^7.10.0",
     "semantic-release": "^25.0.9",
-    "tsx": "^4.23.12",
+    "tsx": "^4.23.13",
     "typedoc": "^0.28.20",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.67.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "fastify": "5.8.5"
-    }
+    "typescript-eslint": "^8.70.0"
   }
 }
