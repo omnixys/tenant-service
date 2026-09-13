@@ -3,6 +3,12 @@
 All notable changes in this project will be documented in this file.
 
 
+## [2.0.4](https://github.com/omnixys/tenant-service/compare/v2.0.3...v2.0.4) (2026-09-13)
+
+### Deps
+
+* **Deps:** update omnixys packages ([](https://github.com/omnixys/tenant-service/commit/e41b50f1e767ef00b91a57954795240f5b66f0cd))
+
 ## [2.0.3](https://github.com/omnixys/tenant-service/compare/v2.0.2...v2.0.3) (2026-09-12)
 
 ### Tenant
