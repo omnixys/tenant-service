@@ -3,6 +3,12 @@
 All notable changes in this project will be documented in this file.
 
 
+## [2.0.5](https://github.com/omnixys/tenant-service/compare/v2.0.4...v2.0.5) (2026-09-16)
+
+### Deps
+
+* **Deps:** update omnixys logger-ts package ([](https://github.com/omnixys/tenant-service/commit/7821cc55f4f10ade0c8940303864ea8b62eb4974))
+
 ## [2.0.4](https://github.com/omnixys/tenant-service/compare/v2.0.3...v2.0.4) (2026-09-13)
 
 ### Deps
