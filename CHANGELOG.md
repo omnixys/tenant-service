@@ -3,6 +3,17 @@
 All notable changes in this project will be documented in this file.
 
 
+## [2.0.6](https://github.com/omnixys/tenant-service/compare/v2.0.5...v2.0.6) (2026-09-21)
+
+### Config
+
+* **Config:** require critical env vars in development and staging ([](https://github.com/omnixys/tenant-service/commit/0284326bf0fae0b2c00bed4cd3cf9828d45593cd))
+* **Config:** require critical env vars in production ([](https://github.com/omnixys/tenant-service/commit/ec6e11ee7755cb02353ef78e1351de55676154cb))
+
+### Deps
+
+* **Deps:** update omnixys packages ([](https://github.com/omnixys/tenant-service/commit/0874ac759227735c475a49253c218e4b2b7fddde))
+
 ## [2.0.5](https://github.com/omnixys/tenant-service/compare/v2.0.4...v2.0.5) (2026-09-16)
 
 ### Deps
