@@ -3,6 +3,12 @@
 All notable changes in this project will be documented in this file.
 
 
+## [2.0.7](https://github.com/omnixys/tenant-service/compare/v2.0.6...v2.0.7) (2026-09-22)
+
+### Deps
+
+* **Deps:** update omnixys package.json script add migrate deploy ([](https://github.com/omnixys/tenant-service/commit/c8802d17e95354d92e0c084b727b55719840f743))
+
 ## [2.0.6](https://github.com/omnixys/tenant-service/compare/v2.0.5...v2.0.6) (2026-09-21)
 
 ### Config
